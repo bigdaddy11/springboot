@@ -57,7 +57,7 @@ public class LoginController {
     //     lopginService.updateById(mbrNo, member);
     //     return new ResponseEntity<LoginEntity>(member, HttpStatus.OK);
     // }
-
+        //test
     // 회원 입력
     @PostMapping
     public ResponseEntity<LoginEntity> save(LoginEntity member) {
