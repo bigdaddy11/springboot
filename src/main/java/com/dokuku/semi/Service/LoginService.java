@@ -2,7 +2,6 @@ package com.dokuku.semi.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +20,8 @@ public class LoginService {
         return members;
     }
 
-    public Optional<LoginEntity> findById(Long id) {
-        Optional<LoginEntity> member = loginRepository.findById(id);
+    public List<LoginEntity> findByuserId(String id) {
+        List<LoginEntity> member = loginRepository.findByuserId(id);
         return member;
     }
 

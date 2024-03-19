@@ -1,7 +1,6 @@
 package com.dokuku.semi.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,16 +37,16 @@ public class LoginController {
     }
 
     // 회원번호로 한명의 회원 조회
-    @GetMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<LoginEntity> getMember(@PathVariable("mbrNo") Long mbrNo) {
-        Optional<LoginEntity> member = lopginService.findById(mbrNo);
-        return new ResponseEntity<LoginEntity>(member.get(), HttpStatus.OK);
+    @GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<List<LoginEntity>> getMember(@PathVariable("userId") String userId) {
+        List<LoginEntity> member = lopginService.findByuserId(userId);
+        return new ResponseEntity<List<LoginEntity>>(member, HttpStatus.OK);
     }
 
     // 회원번호로 회원 삭제
-    @DeleteMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Void> deleteMember(@PathVariable("mbrNo") Long mbrNo) {
-        lopginService.deleteById(mbrNo);
+    @DeleteMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<Void> deleteMember(@PathVariable("userId") Long userId) {
+        lopginService.deleteById(userId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
