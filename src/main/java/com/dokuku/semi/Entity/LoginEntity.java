@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,14 +20,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "t_user")
 public class LoginEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userNo;
+    private Long userId;
 
-    private String userId;
+    private String userNo;
 
     private String userNm;
 
@@ -43,15 +47,16 @@ public class LoginEntity {
     private String userToken;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createDate;
     
     @LastModifiedDate
-    private LocalDateTime lastLoginDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
-    public LoginEntity(String id, String nm, String pw, String address, String zip, String phone, 
-                        String status, String type, String token, LocalDateTime cdate, LocalDateTime ldate){
-        this.userId = id;
+    public LoginEntity(String no, String nm, String pw, String address, String zip, String phone, 
+                        String status, String type, String token){
+        this.userNo = no;
         this.userNm = nm;
         this.userPasswd =  pw;
         this.userAddress = address;
@@ -60,8 +65,6 @@ public class LoginEntity {
         this.userStatus = status;
         this.userType = type;
         this.userToken = token;
-        this.createDate = cdate;
-        this.lastLoginDate = ldate;
     }
 }
 

@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "t_category")
 public class CategoryEntity {
@@ -31,19 +35,17 @@ public class CategoryEntity {
     private String CategoryType; // 카테고리 타입
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createDate;
     
     @LastModifiedDate
-    private LocalDateTime lastLoginDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
-    public CategoryEntity(String CategoryCode, String CategoryTitle, String CategoryType, LocalDateTime cdate, LocalDateTime ldate){
+    public CategoryEntity(String CategoryCode, String CategoryTitle, String CategoryType){
         this.CategoryCode = CategoryCode;
         this.CategoryTitle = CategoryTitle;
         this.CategoryType =  CategoryType;
-        
-        this.createDate = cdate;
-        this.lastLoginDate = ldate;
     }
 }
 

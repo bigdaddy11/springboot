@@ -2,6 +2,7 @@ package com.dokuku.semi.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,13 @@ public class LoginService {
         return members;
     }
 
-    public List<LoginEntity> findByuserId(String id) {
+    public List<LoginEntity> findByuserId(Long id) {
         List<LoginEntity> member = loginRepository.findByuserId(id);
         return member;
     }
 
-    public void deleteById(Long no) {
-        loginRepository.deleteById(no);
+    public void deleteById(Long id) {
+        loginRepository.deleteById(id);
     }
 
     public LoginEntity save(LoginEntity member) {
@@ -34,16 +35,14 @@ public class LoginService {
         return member;
     }
 
-    // public void updateById(Long no, LoginEntity member) {
-    //     Optional<LoginEntity> e = loginRepository.findById(no);
+    public void updateById(Long id, LoginEntity member) {
+        Optional<LoginEntity> e = loginRepository.findById(id);
 
-    //     if (e.isPresent()) {
-    //         //e.get().setId(member.toString());
-    //         e.get().se
-    //         e.get().setName(member.getName());
-    //         memberRepository.save(member);
-    //     }
-    // }
+        if (e.isPresent()) {
+            //e.get().setId(member.toString());
+            loginRepository.save(member);
+        }
+    }
 }
 
 

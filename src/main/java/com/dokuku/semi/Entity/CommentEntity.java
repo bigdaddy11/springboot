@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "t_comment")
 public class CommentEntity {
@@ -33,19 +37,18 @@ public class CommentEntity {
     private String PostNo;  //게시물 foregin key
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createDate;
     
     @LastModifiedDate
-    private LocalDateTime lastLoginDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
-    public CommentEntity(String commentContent, String commentType, String userNo, String PostNo, LocalDateTime cdate, LocalDateTime ldate){
+    public CommentEntity(String commentContent, String commentType, String userNo, String PostNo){
         this.commentContent = commentContent;
         this.commentType = commentType;
         this.userNo =  userNo;
         this.PostNo =  PostNo;
-        this.createDate = cdate;
-        this.lastLoginDate = ldate;
     }
 }
 

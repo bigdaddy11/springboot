@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class LoginController {
 
     // 회원번호로 한명의 회원 조회
     @GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<LoginEntity>> getMember(@PathVariable("userId") String userId) {
+    public ResponseEntity<List<LoginEntity>> getMember(@PathVariable("userId") Long userId) {
         List<LoginEntity> member = lopginService.findByuserId(userId);
         return new ResponseEntity<List<LoginEntity>>(member, HttpStatus.OK);
     }
@@ -50,12 +51,12 @@ public class LoginController {
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    // 회원번호로 회원 수정(mbrNo로 회원을 찾아 Member 객체의 id, name로 수정함)
-    // @PutMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    // public ResponseEntity<LoginEntity> updateMember(@PathVariable("mbrNo") Long mbrNo, LoginEntity member) {
-    //     lopginService.updateById(mbrNo, member);
-    //     return new ResponseEntity<LoginEntity>(member, HttpStatus.OK);
-    // }
+    //회원번호로 회원 수정(mbrNo로 회원을 찾아 Member 객체의 id, name로 수정함)
+    @PutMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<LoginEntity> updateMember(@PathVariable("userId") Long userId, LoginEntity member) {
+        lopginService.updateById(userId, member);
+        return new ResponseEntity<LoginEntity>(member, HttpStatus.OK);
+    }
         //test
     // 회원 입력
     @PostMapping
