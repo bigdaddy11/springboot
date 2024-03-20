@@ -14,6 +14,7 @@ public interface LoginRepository extends JpaRepository<LoginEntity, Long>{
    public List<LoginEntity> findByuserNm(String name);
 
    public List<LoginEntity> findByuserNmLike(String keyword);
+
 }
 
 

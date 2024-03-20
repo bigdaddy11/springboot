@@ -18,29 +18,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "t_user")
-public class LoginEntity {
+@Entity(name = "t_comment")
+public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userNo;
+    private Long commentNo;
 
-    private String userId;
+    private String commentContent; //내용
 
-    private String userNm;
+    private String commentType; //댓글 대댓글 타입여부 1, 2
 
-    private String userPasswd;
+    private String userNo;  //유저 foregin key
 
-    private String userAddress;
-
-    private String userZipcode;
-
-    private String userPhone;
-
-    private String userStatus;
-
-    private String userType;
-
-    private String userToken;
+    private String PostNo;  //게시물 foregin key
 
     @CreationTimestamp
     private LocalDateTime createDate;
@@ -49,17 +39,11 @@ public class LoginEntity {
     private LocalDateTime lastLoginDate;
 
     @Builder
-    public LoginEntity(String id, String nm, String pw, String address, String zip, String phone, 
-                        String status, String type, String token, LocalDateTime cdate, LocalDateTime ldate){
-        this.userId = id;
-        this.userNm = nm;
-        this.userPasswd =  pw;
-        this.userAddress = address;
-        this.userZipcode = zip;
-        this.userPhone = phone;
-        this.userStatus = status;
-        this.userType = type;
-        this.userToken = token;
+    public CommentEntity(String commentContent, String commentType, String userNo, String PostNo, LocalDateTime cdate, LocalDateTime ldate){
+        this.commentContent = commentContent;
+        this.commentType = commentType;
+        this.userNo =  userNo;
+        this.PostNo =  PostNo;
         this.createDate = cdate;
         this.lastLoginDate = ldate;
     }

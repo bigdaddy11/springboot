@@ -18,29 +18,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "t_user")
-public class LoginEntity {
+@Entity(name = "t_Post")
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userNo;
+    private Long PostNo;
 
-    private String userId;
+    private String PostTitle; //제목
 
-    private String userNm;
+    private String PostContent; //내용
 
-    private String userPasswd;
+    private String CategoryCode; // 게시물 타입
 
-    private String userAddress;
-
-    private String userZipcode;
-
-    private String userPhone;
-
-    private String userStatus;
-
-    private String userType;
-
-    private String userToken;
+    private String userNo;  //작성 유저 foregin key
 
     @CreationTimestamp
     private LocalDateTime createDate;
@@ -49,17 +39,11 @@ public class LoginEntity {
     private LocalDateTime lastLoginDate;
 
     @Builder
-    public LoginEntity(String id, String nm, String pw, String address, String zip, String phone, 
-                        String status, String type, String token, LocalDateTime cdate, LocalDateTime ldate){
-        this.userId = id;
-        this.userNm = nm;
-        this.userPasswd =  pw;
-        this.userAddress = address;
-        this.userZipcode = zip;
-        this.userPhone = phone;
-        this.userStatus = status;
-        this.userType = type;
-        this.userToken = token;
+    public PostEntity(String PostTitle, String PostContent, String CategoryCode, String userNo, LocalDateTime cdate, LocalDateTime ldate){
+        this.PostTitle = PostTitle;
+        this.PostContent = PostContent;
+        this.CategoryCode =  CategoryCode;
+        this.userNo =  userNo;
         this.createDate = cdate;
         this.lastLoginDate = ldate;
     }

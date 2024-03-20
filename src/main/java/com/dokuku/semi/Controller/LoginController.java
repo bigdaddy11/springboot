@@ -68,4 +68,13 @@ public class LoginController {
     public ResponseEntity<LoginEntity> save(HttpServletRequest req, LoginEntity member){
         return new ResponseEntity<LoginEntity>(lopginService.save(member), HttpStatus.OK);
     }
+
+    
+   /* 핸드폰번호 변경 */
+
+   /* 닉네임 변경 */
+
+   /* 비밀번호 변경 */
+
+   /* 주소 변경 */
 }
