@@ -9,7 +9,7 @@ import com.dokuku.semi.Entity.LoginEntity;
 
 @Repository
 public interface LoginRepository extends JpaRepository<LoginEntity, Long>{
-   public List<LoginEntity> findByuserId(Long id);
+   public List<LoginEntity> findByUserNo(String userNo);
 
    public List<LoginEntity> findByuserNm(String name);
 

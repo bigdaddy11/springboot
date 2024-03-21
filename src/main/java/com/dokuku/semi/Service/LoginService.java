@@ -21,8 +21,8 @@ public class LoginService {
         return members;
     }
 
-    public List<LoginEntity> findByuserId(Long id) {
-        List<LoginEntity> member = loginRepository.findByuserId(id);
+    public List<LoginEntity> findByUserNo(String userNo) {
+        List<LoginEntity> member = loginRepository.findByUserNo(userNo);
         return member;
     }
 

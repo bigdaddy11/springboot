@@ -28,46 +28,46 @@ public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    LoginService lopginService;
+    LoginService loginService;
 
     //모든회원조희
     @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<List<LoginEntity>> getAlllogin(){
-        List<LoginEntity> login = lopginService.findAll();
+        List<LoginEntity> login = loginService.findAll();
         return new ResponseEntity<List<LoginEntity>>(login, HttpStatus.OK);
     }
 
     // 회원번호로 한명의 회원 조회
-    @GetMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<LoginEntity>> getlogin(@PathVariable("userId") Long userId) {
-        List<LoginEntity> login = lopginService.findByuserId(userId);
+    @GetMapping(value = "/{userNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<List<LoginEntity>> getlogin(@PathVariable("userNo") String userNo) {
+        List<LoginEntity> login = loginService.findByUserNo(userNo);
         return new ResponseEntity<List<LoginEntity>>(login, HttpStatus.OK);
     }
 
     // 회원번호로 회원 삭제
     @DeleteMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Void> deletelogin(@PathVariable("userId") Long userId) {
-        lopginService.deleteById(userId);
+        loginService.deleteById(userId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     //회원번호로 회원 수정(mbrNo로 회원을 찾아 login 객체의 id, name로 수정함)
     @PutMapping(value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<LoginEntity> updatelogin(@PathVariable("userId") Long userId, LoginEntity login) {
-        lopginService.updateById(userId, login);
+        loginService.updateById(userId, login);
         return new ResponseEntity<LoginEntity>(login, HttpStatus.OK);
     }
         //test
     // 회원 입력
     @PostMapping
     public ResponseEntity<LoginEntity> save(LoginEntity login) {
-        return new ResponseEntity<LoginEntity>(lopginService.save(login), HttpStatus.OK);
+        return new ResponseEntity<LoginEntity>(loginService.save(login), HttpStatus.OK);
     }
 
     // 회원 입력
     @RequestMapping(value="/savelogin", method = RequestMethod.GET)
     public ResponseEntity<LoginEntity> save(HttpServletRequest req, LoginEntity login){
-        return new ResponseEntity<LoginEntity>(lopginService.save(login), HttpStatus.OK);
+        return new ResponseEntity<LoginEntity>(loginService.save(login), HttpStatus.OK);
     }
 
     
