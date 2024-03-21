@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentNo;
+    private Long commentId;
 
     private String commentContent; //내용
 

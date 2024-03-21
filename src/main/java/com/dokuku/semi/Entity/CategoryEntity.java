@@ -26,13 +26,13 @@ import lombok.NoArgsConstructor;
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CategoryNo;
+    private Long categoryId;
 
-    private String CategoryCode; //코드
+    private String categoryCode; //코드
 
-    private String CategoryTitle; //내용
+    private String categoryTitle; //내용
 
-    private String CategoryType; // 카테고리 타입
+    private String categoryType; // 카테고리 타입
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -43,9 +43,9 @@ public class CategoryEntity {
 
     @Builder
     public CategoryEntity(String CategoryCode, String CategoryTitle, String CategoryType){
-        this.CategoryCode = CategoryCode;
-        this.CategoryTitle = CategoryTitle;
-        this.CategoryType =  CategoryType;
+        this.categoryCode = CategoryCode;
+        this.categoryTitle = CategoryTitle;
+        this.categoryType =  CategoryType;
     }
 }
 

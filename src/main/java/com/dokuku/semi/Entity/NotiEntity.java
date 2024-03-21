@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class NotiEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notiNo;
+    private Long notiId;
 
     private String notiTitle;
 

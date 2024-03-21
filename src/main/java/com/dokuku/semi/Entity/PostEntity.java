@@ -26,13 +26,13 @@ import lombok.NoArgsConstructor;
 public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long PostNo;
+    private Long postId;
 
-    private String PostTitle; //제목
+    private String postTitle; //제목
 
-    private String PostContent; //내용
+    private String postContent; //내용
 
-    private String CategoryCode; // 게시물 타입
+    private String categoryCode; // 게시물 타입
 
     private String userNo;  //작성 유저 foregin key
 
@@ -44,10 +44,10 @@ public class PostEntity {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public PostEntity(String PostTitle, String PostContent, String CategoryCode, String userNo){
-        this.PostTitle = PostTitle;
-        this.PostContent = PostContent;
-        this.CategoryCode =  CategoryCode;
+    public PostEntity(String postTitle, String postContent, String categoryCode, String userNo){
+        this.postTitle = postTitle;
+        this.postContent = postContent;
+        this.categoryCode =  categoryCode;
         this.userNo =  userNo;
     }
 }
