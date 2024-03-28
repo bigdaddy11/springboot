@@ -21,10 +21,10 @@ public class CategoryService {
         return Categorys;
     }
 
-    // public List<CategoryEntity> findByuserId(Long id) {
-    //     List<CategoryEntity> Category = CategoryRepository.findByuserId(id);
-    //     return Category;
-    // }
+    public List<CategoryEntity> findByCategoryId(Long id) {
+        List<CategoryEntity> Category = CategoryRepository.findByCategoryId(id);
+        return Category;
+    }
 
     public void deleteById(Long id) {
         CategoryRepository.deleteById(id);
