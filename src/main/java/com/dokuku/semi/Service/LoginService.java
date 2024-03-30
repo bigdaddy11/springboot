@@ -26,6 +26,11 @@ public class LoginService {
         return member;
     }
 
+    public List<LoginEntity> findByUserId(Long userId) {
+        List<LoginEntity> member = loginRepository.findByUserId(userId);
+        return member;
+    }
+
     public void deleteById(Long id) {
         loginRepository.deleteById(id);
     }

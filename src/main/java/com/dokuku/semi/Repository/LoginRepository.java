@@ -11,6 +11,8 @@ import com.dokuku.semi.Entity.LoginEntity;
 public interface LoginRepository extends JpaRepository<LoginEntity, Long>{
    public List<LoginEntity> findByUserNo(String userNo);
 
+   public List<LoginEntity> findByUserId(Long userId);
+
    public List<LoginEntity> findByuserNm(String name);
 
    public List<LoginEntity> findByuserNmLike(String keyword);

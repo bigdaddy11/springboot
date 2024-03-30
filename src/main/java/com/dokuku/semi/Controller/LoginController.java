@@ -22,6 +22,7 @@ import com.dokuku.semi.Service.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+
 @RestController
 @RequestMapping("login")
 public class LoginController {
@@ -38,9 +39,19 @@ public class LoginController {
     }
 
     // 회원번호로 한명의 회원 조회
+    // public ResponseEntity<List<LoginEntity>> getlogin(@PathVariable("userNo") String userNo) {
+    //     List<LoginEntity> login = loginService.findByUserNo(userNo);
+    //     return new ResponseEntity<List<LoginEntity>>(login, HttpStatus.OK);
+    // }
     @GetMapping(value = "/{userNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<List<LoginEntity>> getlogin(@PathVariable("userNo") String userNo) {
         List<LoginEntity> login = loginService.findByUserNo(userNo);
+        return new ResponseEntity<List<LoginEntity>>(login, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/prop/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<List<LoginEntity>> getloginProp(@PathVariable("userId") Long userId) {
+        List<LoginEntity> login = loginService.findByUserId(userId);
         return new ResponseEntity<List<LoginEntity>>(login, HttpStatus.OK);
     }
 
