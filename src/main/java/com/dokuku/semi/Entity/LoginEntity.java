@@ -46,6 +46,8 @@ public class LoginEntity {
 
     private String userToken;
 
+    private String provider;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createDate;
@@ -55,7 +57,7 @@ public class LoginEntity {
 
     @Builder
     public LoginEntity(String no, String nm, String pw, String address, String zip, String phone, 
-                        String status, String type, String token){
+                        String status, String type, String token, String provider){
         this.userNo = no;
         this.userNm = nm;
         this.userPasswd =  pw;
@@ -65,6 +67,7 @@ public class LoginEntity {
         this.userStatus = status;
         this.userType = type;
         this.userToken = token;
+        this.provider = provider;
     }
 }
 
