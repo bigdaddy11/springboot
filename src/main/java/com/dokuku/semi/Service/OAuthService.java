@@ -40,7 +40,7 @@ public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2
         
         com.dokuku.semi.Entity.Member member = OAuthAttributes.extract(registrationId, attributes);
         member.updateProvider(registrationId);
-        member.saveOrUpdate(member);
+        member = SaveOrUpdate(member);
 
         Map<String, Object> customAttribute = customAttribute(attributes, userNameAttributeName, member, registrationId);
 

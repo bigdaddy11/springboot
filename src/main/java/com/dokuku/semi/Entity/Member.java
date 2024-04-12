@@ -82,9 +82,4 @@ public class Member {
         return this.getRole().getValue();
     }
 
-    public void saveOrUpdate(Member member) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
-    }
-
 }
